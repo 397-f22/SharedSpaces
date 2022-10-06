@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import {ThemeProvider } from '@mui/material/styles';
-import headerTheme from '../styles/Themes';
+import {headerTheme} from '../styles/Themes';
 
 const NavBar = () => {
   return (
