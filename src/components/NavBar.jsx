@@ -13,7 +13,6 @@ const NavBar = () => {
   return (
     <ThemeProvider theme={headerTheme}>
     <Box sx={{ flexGrow: 1 }}>
-    
       <AppBar position="static">
         <Toolbar>
           <IconButton
