@@ -16,5 +16,8 @@ export const headerTheme = createTheme({
         dark: '#ba000d',
         contrastText: '#000',
       },
+      checked: {
+        main: '#4a367a',
+      }
     },
 });
