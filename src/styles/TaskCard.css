@@ -1,0 +1,12 @@
+.card-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.card-container {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+

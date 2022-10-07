@@ -1,31 +1,42 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Checkbox from '@mui/material/Checkbox';
-import Button from '@mui/material/Button';
+import '../styles/TaskCard.css';
+import {useState} from 'react';
 
 
 const task = {title:"dummy",due:"today"}
 
+const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
+
+
 const TaskCard = () =>{
+    const [checked, setChecked] = useState(false);
+
+const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
     return  (
-            <Card variant="outlined" sx={{height:128,width:256}}>
+        <div className="card-container">
+            <Card variant="outlined" sx={{width:1}}>
                 <CardContent>
-                    <Checkbox/>
-                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    {task.title}
-                    </Typography>
-                    <Typography variant="h5" component="div">
-                        {task.due}
-                    </Typography>
+                    <div className="card-content">
+                    <Checkbox checked={checked} onChange={handleChange} />
+                        <Typography variant="h5" component="div">
+                            {task.title}
+                        </Typography>
+                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                            {task.due}
+                        </Typography>
+                    </div>
                 </CardContent>
             </Card>
+        </div> 
     ); 
-
 }
 
 export default TaskCard;

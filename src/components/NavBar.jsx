@@ -11,7 +11,6 @@ import {headerTheme} from '../styles/Themes';
 
 const NavBar = () => {
   return (
-    <ThemeProvider theme={headerTheme}>
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
@@ -30,7 +29,6 @@ const NavBar = () => {
         </Toolbar>
       </AppBar>
     </Box>
-    </ThemeProvider>
   );
 }
 

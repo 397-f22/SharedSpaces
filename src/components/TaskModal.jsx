@@ -4,13 +4,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import {useState} from 'react';
+import '../styles/TaskModal.css';
 
 const TaskModal = () =>{
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleOpen = () => setShow(true);
     return (
-    <div>
+    <div className="task-modal">
         <Button size="small" onClick={handleOpen}  variant='contained'>Add Task</Button>
             <Modal
             open={show}
