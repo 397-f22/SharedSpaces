@@ -7,6 +7,16 @@ import {useState} from 'react';
 import '../styles/TaskModal.css';
 import {ThemeProvider } from '@mui/material/styles';
 import {headerTheme} from '../styles/Themes';
+import TextField from '@mui/material/TextField';
+
+const style = {
+
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+
+    bgcolor:"primary.main"
+}
 
 const TaskModal = () =>{
     const [show, setShow] = useState(false);
@@ -22,14 +32,12 @@ const TaskModal = () =>{
                     onClose={handleClose}
                     aria-labelledby="modal-modal-title"
                     aria-describedby="modal-modal-description"
+                    style={style}
                     >
-                        <Box sx={{ flexGrow: 1 }}>
-                            <Typography id="modal-modal-title" variant="h6" component="h2">
-                            Text in a modal
-                            </Typography>
-                            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-                            </Typography>
+                        <Box sx={{ flexGrow: 1,height:"128px",width:"256px" }}>
+                        <TextField id="standard-basic" label="Standard" variant="standard" defaultValue="chore name"/>
+                        <TextField id="standard-basic" label="Standard" variant="standard" defaultValue="due date"/>
+
                         </Box>
                     </Modal>
             </div>
