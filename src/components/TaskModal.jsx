@@ -17,10 +17,10 @@ const style = {
 
 
 }
-const boxStyle={ flexGrow: 1,height:"128px",width:"256px",bgcolor:"grey.700",display:"flex",flexDirection:"column",justifyContent:"center"
+const boxStyle={ flexGrow: 1,height:"128px",width:"256px",display:"flex",flexDirection:"column",justifyContent:"center"
 ,alignItems:"center"
 };
-const textFieldStyle={width:"50%",color:"common.white"}
+const textFieldStyle={width:"30%",fontColor:"common.white",padding:"17px"}
 
 const TaskModal = ({tasks, setTasks}) =>{
     const [show, setShow] = useState(false);
