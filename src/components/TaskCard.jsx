@@ -13,20 +13,8 @@ const TaskCard = ({id, task, tasks, setTasks}) =>{
     console.log(task);
     
     const checkOnclick=()=>{
-        console.log(tasks);
-        const newState = tasks.map(obj => {
-            // 👇️ if id equals 2 replace object
-            console.log(obj.check);
-            if (obj.id === id) {
-                console.log(!obj.check);
-              return {title:obj.title, due:obj.due, check:!obj.check};
-            }
-      
-            // 👇️ otherwise return object as is
-            return obj;
-          });
-      
-          setTasks(newState);
+        const newState = tasks.filter(obj => obj != task);
+        setTasks(newState);
     }
     
     return  (
@@ -34,8 +22,7 @@ const TaskCard = ({id, task, tasks, setTasks}) =>{
             <Card variant="outlined" sx={{width:1}}>
                 <CardContent>
                     <div className="card-content">
-                    <Checkbox checked={task.check}
-                        onChange={()=>checkOnclick()}/>
+                    <input type="checkbox" id="checkbox" name="vehicle1" onClick={() => checkOnclick()}></input>
                     <ThemeProvider theme={headerTheme}>
                         <Typography variant="h5" component="div">
                             {task.title}
