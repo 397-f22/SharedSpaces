@@ -15,8 +15,12 @@ const style = {
     alignItems: "center",
     justifyContent: "center",
 
-    bgcolor:"primary.main"
+
 }
+const boxStyle={ flexGrow: 1,height:"128px",width:"256px",bgcolor:"grey.700",display:"flex",flexDirection:"column",justifyContent:"center"
+,alignItems:"center"
+};
+const textFieldStyle={width:"50%",color:"common.white"}
 
 const TaskModal = () =>{
     const [show, setShow] = useState(false);
@@ -34,9 +38,9 @@ const TaskModal = () =>{
                     aria-describedby="modal-modal-description"
                     style={style}
                     >
-                        <Box sx={{ flexGrow: 1,height:"128px",width:"256px" }}>
-                        <TextField id="standard-basic" label="Standard" variant="standard" defaultValue="chore name"/>
-                        <TextField id="standard-basic" label="Standard" variant="standard" defaultValue="due date"/>
+                        <Box sx={boxStyle}>
+                        <TextField sx={textFieldStyle} id="standard-basic" label="Standard" variant="standard" defaultValue="chore name"/>
+                        <TextField sx={textFieldStyle} id="standard-basic" label="Standard" variant="standard" defaultValue="due date"/>
 
                         </Box>
                     </Modal>
