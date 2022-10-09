@@ -9,11 +9,8 @@ import {ThemeProvider } from '@mui/material/styles';
 import {headerTheme} from '../styles/Themes';
 
 
-const task = {title:"dummy", due:"today"}
-
-
-
-const TaskCard = () =>{
+const TaskCard = ({task}) =>{
+    console.log(task);
     return  (
         <div className="card-container">
             <Card variant="outlined" sx={{width:1}}>

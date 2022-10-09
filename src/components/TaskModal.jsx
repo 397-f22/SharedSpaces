@@ -22,10 +22,16 @@ const boxStyle={ flexGrow: 1,height:"128px",width:"256px",bgcolor:"grey.700",dis
 };
 const textFieldStyle={width:"50%",color:"common.white"}
 
-const TaskModal = () =>{
+const TaskModal = ({tasks, setTasks}) =>{
     const [show, setShow] = useState(false);
+    const [title, setTitle] = useState("");
+    const [due, setDue] = useState("");
     const handleClose = () => setShow(false);
     const handleOpen = () => setShow(true);
+
+    const saveValues = () => {
+        setTasks([...tasks, {title, due}]);
+    }
     
     return (
         <ThemeProvider theme={headerTheme}>
@@ -39,9 +45,9 @@ const TaskModal = () =>{
                     style={style}
                     >
                         <Box sx={boxStyle}>
-                        <TextField sx={textFieldStyle} id="standard-basic" label="Standard" variant="standard" defaultValue="chore name"/>
-                        <TextField sx={textFieldStyle} id="standard-basic" label="Standard" variant="standard" defaultValue="due date"/>
-
+                        <TextField sx={textFieldStyle} id="standard-basic" label="Title" variant="standard" defaultValue="chore name" onChange={(event) => setTitle(event.target.value)}/>
+                        <TextField sx={textFieldStyle} id="standard-basic" label="Due" variant="standard" defaultValue="due date" onChange={(event) => setDue(event.target.value)}/>
+                        <Button size="small" onClick={() => saveValues()}>Save</Button>
                         </Box>
                     </Modal>
             </div>
