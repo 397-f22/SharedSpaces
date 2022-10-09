@@ -46,8 +46,8 @@ const TaskModal = ({tasks, setTasks}) =>{
                     style={style}
                     >
                         <Box sx={boxStyle}>
-                        <TextField sx={textFieldStyle} id="standard-basic" label="Title" variant="standard" defaultValue="chore name" onChange={(event) => setTitle(event.target.value)}/>
-                        <TextField sx={textFieldStyle} id="standard-basic" label="Due" variant="standard" defaultValue="due date" onChange={(event) => setDue(event.target.value)}/>
+                        <TextField sx={textFieldStyle} id="standard-basic" label="Task" variant="standard" defaultValue="" onChange={(event) => setTitle(event.target.value)}/>
+                        <TextField sx={textFieldStyle} id="standard-basic" label="Due Date" variant="standard" defaultValue="" onChange={(event) => setDue(event.target.value)}/>
                         <Button size="small" onClick={() => saveValues()}>Save</Button>
                         </Box>
                     </Modal>

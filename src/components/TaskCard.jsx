@@ -7,6 +7,7 @@ import '../styles/TaskCard.css';
 import {useState} from 'react';
 import {ThemeProvider } from '@mui/material/styles';
 import {headerTheme} from '../styles/Themes';
+import Button from '@mui/material/Button';
 
 
 const TaskCard = ({id, task, tasks, setTasks}) =>{
@@ -22,14 +23,17 @@ const TaskCard = ({id, task, tasks, setTasks}) =>{
             <Card variant="outlined" sx={{width:1}}>
                 <CardContent>
                     <div className="card-content">
-                    <input type="checkbox" id="checkbox" name="vehicle1" onClick={() => checkOnclick()}></input>
+                    <input type="checkbox" id="checkbox" name="vehicle1"></input>
                     <ThemeProvider theme={headerTheme}>
+                        <div className='task-wrapper'>
                         <Typography variant="h5" component="div">
                             {task.title}
                         </Typography>
                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                             {task.due}
                         </Typography>
+                        </div>
+                        <Button size="small" onClick={() => checkOnclick()} variant='contained'>Remove</Button>
                         </ThemeProvider>
                     </div>
                 </CardContent>
