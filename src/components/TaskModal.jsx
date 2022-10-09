@@ -30,7 +30,8 @@ const TaskModal = ({tasks, setTasks}) =>{
     const handleOpen = () => setShow(true);
 
     const saveValues = () => {
-        setTasks([...tasks, {title, due}]);
+        const check = false;
+        setTasks([...tasks, {title, due, check}]);
     }
     
     return (

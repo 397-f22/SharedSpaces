@@ -9,14 +9,33 @@ import {ThemeProvider } from '@mui/material/styles';
 import {headerTheme} from '../styles/Themes';
 
 
-const TaskCard = ({task}) =>{
+const TaskCard = ({id, task, tasks, setTasks}) =>{
     console.log(task);
+    
+    const checkOnclick=()=>{
+        console.log(tasks);
+        const newState = tasks.map(obj => {
+            // 👇️ if id equals 2 replace object
+            console.log(obj.check);
+            if (obj.id === id) {
+                console.log(!obj.check);
+              return {title:obj.title, due:obj.due, check:!obj.check};
+            }
+      
+            // 👇️ otherwise return object as is
+            return obj;
+          });
+      
+          setTasks(newState);
+    }
+    
     return  (
         <div className="card-container">
             <Card variant="outlined" sx={{width:1}}>
                 <CardContent>
                     <div className="card-content">
-                    <Checkbox />
+                    <Checkbox checked={task.check}
+                        onChange={()=>checkOnclick()}/>
                     <ThemeProvider theme={headerTheme}>
                         <Typography variant="h5" component="div">
                             {task.title}

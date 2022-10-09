@@ -14,8 +14,8 @@ const App = () => {
         <NavBar />
       </header>
       <div className="App-content">
-        {tasks.map(task => (
-          <TaskCard key={task} task={task} />
+        {tasks.map((task,id) => (
+          <TaskCard key={id} id={id} task={task} tasks={tasks} setTasks={setTasks}/>
         ))
         }
         <TaskModal tasks={tasks} setTasks={setTasks}/>
