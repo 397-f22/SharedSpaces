@@ -12,18 +12,27 @@ import Button from '@mui/material/Button';
 
 const TaskCard = ({id, task, tasks, setTasks}) =>{
     console.log(task);
-    
-    const checkOnclick=()=>{
+    // const [checked, setChecked] = useState(false);
+    const remove=()=>{
         const newState = tasks.filter(obj => obj != task);
         setTasks(newState);
     }
-    
+    const checkOnClick = ()=>{
+        console.log("Clicked")
+        const newState = tasks.map(obj => {if (obj == task){
+            return {title: task.title, 
+                due: task.due,
+                check: !task.check}
+        }})
+        console.log(task.check)
+        setTasks(newState)
+    }   
     return  (
-        <div className="card-container">
+        <div className="card-container" >
             <Card variant="outlined" sx={{width:1}}>
                 <CardContent>
-                    <div className="card-content">
-                    <input type="checkbox" id="checkbox" name="vehicle1"></input>
+                    <div className={task.check ? "card-content-check" : "card-content-uncheck" }>
+                    <input type="checkbox" onClick={()=> checkOnClick()}id="checkbox" name="vehicle1"></input>
                     <ThemeProvider theme={headerTheme}>
                         <div className='task-wrapper'>
                         <Typography variant="h5" component="div">
@@ -33,7 +42,7 @@ const TaskCard = ({id, task, tasks, setTasks}) =>{
                             {task.due}
                         </Typography>
                         </div>
-                        <Button size="small" onClick={() => checkOnclick()} variant='contained'>Remove</Button>
+                        <Button size="small" onClick={() => remove()} variant='contained'>Remove</Button>
                         </ThemeProvider>
                     </div>
                 </CardContent>
