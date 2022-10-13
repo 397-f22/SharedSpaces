@@ -1,20 +1,36 @@
-.card-content {
+.card-content-check {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    background-color: lightgreen !important;
 }
+.card-content-uncheck {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white !important;
+}
+
 
 .card-container {
     display: flex;
     justify-content: space-between;
     margin-left: 5%;
     margin-right: 5%;
+    background-color: white  !important;
 }
 
 .task-wrapper {
     display: flex;
     flex-direction: column;
 
+}
+.checked{
+    background-color: green;
+}
+.notChecked{
+    background-color: white;
 }
 
