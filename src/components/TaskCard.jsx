@@ -12,6 +12,8 @@ import Button from '@mui/material/Button';
 
 const TaskCard = ({id, task, tasks, setTasks}) =>{
     console.log(task);
+    console.log(task.due);
+
     // const [checked, setChecked] = useState(false);
     const remove=()=>{
         const newState = tasks.filter(obj => obj != task);
