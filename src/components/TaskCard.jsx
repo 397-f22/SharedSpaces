@@ -10,9 +10,11 @@ import {headerTheme} from '../styles/Themes';
 import Button from '@mui/material/Button';
 
 
-const TaskCard = ({id, task, tasks, setTasks}) =>{
+const TaskCard = ({id, task}) =>{
+    const [tasks, setTasks] = useState([]);
     console.log(task);
-    console.log(task.due);
+    //console.log(task.id.due);
+    console.log(task.task);
 
     // const [checked, setChecked] = useState(false);
     const remove=()=>{
@@ -38,7 +40,7 @@ const TaskCard = ({id, task, tasks, setTasks}) =>{
                     <ThemeProvider theme={headerTheme}>
                         <div className='task-wrapper'>
                         <Typography variant="h5" component="div">
-                            {task.title}
+                            {task.task}
                         </Typography>
                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                             {task.due}
