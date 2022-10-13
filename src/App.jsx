@@ -3,18 +3,22 @@ import './App.css';
 import NavBar from './components/NavBar';
 import TaskCard from './components/Taskcard';
 import TaskModal from './components/TaskModal';
+import { useDbData } from "./utilities/firebase";
 
 const App = () => {
 
+  
+  const [data, error] = useDbData('/');
+  //console.log(data.tasks);
+  if (error) return <h1>{error}</h1>;
   const [tasks, setTasks] = useState([]);
-
   return (
     <div className="App">
       <header className="App-header">
         <NavBar />
       </header>
       <div className="App-content">
-        {tasks.map((task,id) => (
+        {tasks.map((id,task) => (
           <TaskCard key={id} id={id} task={task} tasks={tasks} setTasks={setTasks}/>
         ))
         }
