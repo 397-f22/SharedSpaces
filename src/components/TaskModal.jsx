@@ -48,7 +48,7 @@ const saveStyle = {color:"white", backgroundColor: "purple",
     color: 'white',
     backgroundColor: 'plum',
   }}
-const TaskModal = ({tasks, setTasks}) =>{
+const TaskModal = (tasks, setTasks) =>{
     const [show, setShow] = useState(false);
     const [title, setTitle] = useState("");
     const [due, setDue] = useState("");
