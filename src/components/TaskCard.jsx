@@ -11,8 +11,10 @@ import Button from '@mui/material/Button';
 import { useDbUpdate } from '../utilities/firebase';
 
 
-const TaskCard = ({id, task,update}) =>{
+const TaskCard = ({due, id, title}) =>{
     const [tasks, setTasks] = useState([]);
+    console.log("hello", title);
+    console.log(due);
     //console.log(id);
     //console.log(task);
     //console.log(task.id.due);
@@ -20,39 +22,40 @@ const TaskCard = ({id, task,update}) =>{
     const [update, result] = useDbUpdate(`/tasks/${id}`);
     // const [checked, setChecked] = useState(false);
     const remove=(evt)=>{
+        // remove directly from db rather than using state
         const newState = tasks.filter(obj => obj != task);
         setTasks(newState);
         evt.preventDefault();
         update(state);
     }
-    const checkOnClick = ()=>{
-        console.log("Clicked")
-        const newState = tasks.map(obj => {if (obj == task){
-            return {title: task.title, 
-                due: task.due,
-                check: !task.check}
-        }})
-        console.log(task.check)
-        setTasks(newState)
-    }   
+    //const checkOnClick = ()=>{
+    //    console.log("Clicked")
+    //    const newState = tasks.map(obj => {if (obj == task){
+    //        return {title: task.title, 
+    //            due: task.due,
+    //            check: !task.check}
+    //    }})
+    //    console.log(task.check)
+    //    setTasks(newState)
+    //}   
     return  (
         <div className="card-container" >
             <Card variant="outlined" sx={{width:1}}>
                 <CardContent>
-                    <div className={task.check ? "card-content-check" : "card-content-uncheck" }>
-                    <input type="checkbox" onClick={()=> checkOnClick()}id="checkbox" name="vehicle1"></input>
+                    {/*<div className={title.check ? "card-content-check" : "card-content-uncheck" }>
+                    <input type="checkbox" onClick={()=> checkOnClick()}id="checkbox" name="vehicle1"></input>*/}
                     <ThemeProvider theme={headerTheme}>
                         <div className='task-wrapper'>
                         <Typography variant="h5" component="div">
-                            {task.task}
+                            {title}
                         </Typography>
                         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                            {task.due}
+                            {due}
                         </Typography>
                         </div>
                         <Button size="small" onClick={(evt) => remove(evt)} variant='contained'>Remove</Button>
                         </ThemeProvider>
-                    </div>
+                    {/*</div>*/}
                 </CardContent>
             </Card>
         </div>  
