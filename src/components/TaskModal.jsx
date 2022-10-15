@@ -38,7 +38,7 @@ const saveStyle = {color:"white", backgroundColor: "purple",
 '&:hover': {
     color: 'white',
     backgroundColor: 'plum',
-  }}
+  }, marginLeft:"20px", marginBottom:"5px"}
 const TaskModal = ({tasks, setTasks}) =>{
     const [show, setShow] = useState(false);
     const [title, setTitle] = useState("");
