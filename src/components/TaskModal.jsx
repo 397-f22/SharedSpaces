@@ -121,27 +121,6 @@ const TaskModal = () =>{
                         <DatePicker onChange={(value) => {formatDate(value)}} value={date} />
                         <Button size="small" sx={saveStyle} onClick={() => Push(due, title)}>Save</Button>
                         </Box>
-                        <Box sx={boxStyle}>
-                        <TextField
-                            id="assigned-by"
-
-                            InputProps={{
-                                readOnly: true,
-                            }}
-                            />
-                        
-                            <InputLabel id="demo-simple-select-label">Assigned to</InputLabel>
-                            <Select
-                                id="assigned-to"
-                                label="assigned-to"
-                                
-                            >
-                                <MenuItem value={10}>Jim</MenuItem>
-                                <MenuItem value={20}>Pam</MenuItem>
-                                <MenuItem value={30}>Andy</MenuItem>
-                            </Select>
-                            
-                        </Box>
                         </FormControl>
                     </Modal>
             </div>

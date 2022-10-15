@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { initializeApp } from "firebase/app";
-import { getDatabase, onValue, ref, update, set } from 'firebase/database';
+import { getDatabase, onValue, ref, update, set, remove } from 'firebase/database';
 
 const firebaseConfig = {
     apiKey: "AIzaSyBg_mjb-096aLiZBvTfJIsN4lEoqDJyBlU",
@@ -19,6 +19,18 @@ const database = getDatabase(firebase);
 export const setData = (path, value) => (
   set(ref(database, path), value)
 );
+
+export const removeData = (path)=>{
+
+  remove(ref(database,path)).then(
+    ()=>{
+      console.log("removed");
+    }
+  ).catch((err)=>{
+    console.log("remove failed");
+  })
+
+}
 
 export const useDbData = (path) => {
     const [data, setData] = useState();

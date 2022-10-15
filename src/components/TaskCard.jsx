@@ -9,24 +9,17 @@ import {ThemeProvider } from '@mui/material/styles';
 import {headerTheme} from '../styles/Themes';
 import Button from '@mui/material/Button';
 import { useDbUpdate } from '../utilities/firebase';
-
+import { removeData } from '../utilities/firebase';
 
 const TaskCard = ({due, id, title}) =>{
-    const [tasks, setTasks] = useState([]);
-    console.log("hello", title);
-    console.log(due);
-    //console.log(id);
-    //console.log(task);
-    //console.log(task.id.due);
-    //console.log(task.task);
+    // const [tasks, setTasks] = useState([]);
+    console.log(id);
+
     const [update, result] = useDbUpdate(`/tasks/${id}`);
     // const [checked, setChecked] = useState(false);
-    const remove=(evt)=>{
+    const remove=() =>{
         // remove directly from db rather than using state
-        const newState = tasks.filter(obj => obj != task);
-        setTasks(newState);
-        evt.preventDefault();
-        update(state);
+        removeData(`/tasks/${id}`);
     }
     //const checkOnClick = ()=>{
     //    console.log("Clicked")
@@ -53,7 +46,7 @@ const TaskCard = ({due, id, title}) =>{
                             {due}
                         </Typography>
                         </div>
-                        <Button size="small" onClick={(evt) => remove(evt)} variant='contained'>Remove</Button>
+                        <Button size="small" onClick={(evt) => remove()} variant='contained'>Remove</Button>
                         </ThemeProvider>
                     {/*</div>*/}
                 </CardContent>
