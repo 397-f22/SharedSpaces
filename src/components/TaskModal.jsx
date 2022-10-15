@@ -51,6 +51,7 @@ const TaskModal = () =>{
             id: id,
             title: title,
             due : date, 
+            checked: false,
         }).catch(alert);
     };
 

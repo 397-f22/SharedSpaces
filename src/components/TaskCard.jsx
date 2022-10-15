@@ -2,23 +2,16 @@ import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import Checkbox from '@mui/material/Checkbox';
 import '../styles/TaskCard.css';
 import {useState} from 'react';
 import {ThemeProvider } from '@mui/material/styles';
 import {headerTheme} from '../styles/Themes';
 import Button from '@mui/material/Button';
-import { useDbUpdate } from '../utilities/firebase';
+import { setData, useDbUpdate } from '../utilities/firebase';
 
 
-const TaskCard = ({due, id, title}) =>{
+const TaskCard = ({due, id, title, checked}) =>{
     const [tasks, setTasks] = useState([]);
-    console.log("hello", title);
-    console.log(due);
-    //console.log(id);
-    //console.log(task);
-    //console.log(task.id.due);
-    //console.log(task.task);
     const [update, result] = useDbUpdate(`/tasks/${id}`);
     // const [checked, setChecked] = useState(false);
     const remove=(evt)=>{
@@ -28,22 +21,20 @@ const TaskCard = ({due, id, title}) =>{
         evt.preventDefault();
         update(state);
     }
-    //const checkOnClick = ()=>{
-    //    console.log("Clicked")
-    //    const newState = tasks.map(obj => {if (obj == task){
-    //        return {title: task.title, 
-    //            due: task.due,
-    //            check: !task.check}
-    //    }})
-    //    console.log(task.check)
-    //    setTasks(newState)
-    //}   
+    const changeChecked = ()=>{
+        setData(`/tasks/${id}`, {
+            id: id,
+            title: title,
+            due : due, 
+            checked: !checked,
+        }).catch(alert);
+    }   
     return  (
         <div className="card-container" >
             <Card variant="outlined" sx={{width:1}}>
                 <CardContent>
-                    {/*<div className={title.check ? "card-content-check" : "card-content-uncheck" }>
-                    <input type="checkbox" onClick={()=> checkOnClick()}id="checkbox" name="vehicle1"></input>*/}
+                    <div className={checked ? "card-content-check" : "card-content-uncheck" }>
+                    <input type="checkbox" id="checkbox" name="vehicle1" checked={checked} onChange={() => changeChecked()}></input>
                     <ThemeProvider theme={headerTheme}>
                         <div className='task-wrapper'>
                         <Typography variant="h5" component="div">
@@ -55,7 +46,7 @@ const TaskCard = ({due, id, title}) =>{
                         </div>
                         <Button size="small" onClick={(evt) => remove(evt)} variant='contained'>Remove</Button>
                         </ThemeProvider>
-                    {/*</div>*/}
+                    </div>
                 </CardContent>
             </Card>
         </div>  
