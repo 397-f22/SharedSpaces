@@ -8,18 +8,22 @@ import {useState} from 'react';
 import {ThemeProvider } from '@mui/material/styles';
 import {headerTheme} from '../styles/Themes';
 import Button from '@mui/material/Button';
+import { useDbUpdate } from '../utilities/firebase';
 
 
-const TaskCard = ({id, task}) =>{
+const TaskCard = ({id, task,update}) =>{
     const [tasks, setTasks] = useState([]);
-    console.log(task);
+    //console.log(id);
+    //console.log(task);
     //console.log(task.id.due);
-    console.log(task.task);
-
+    //console.log(task.task);
+    const [update, result] = useDbUpdate(`/tasks/${id}`);
     // const [checked, setChecked] = useState(false);
-    const remove=()=>{
+    const remove=(evt)=>{
         const newState = tasks.filter(obj => obj != task);
         setTasks(newState);
+        evt.preventDefault();
+        update(state);
     }
     const checkOnClick = ()=>{
         console.log("Clicked")
@@ -46,7 +50,7 @@ const TaskCard = ({id, task}) =>{
                             {task.due}
                         </Typography>
                         </div>
-                        <Button size="small" onClick={() => remove()} variant='contained'>Remove</Button>
+                        <Button size="small" onClick={(evt) => remove(evt)} variant='contained'>Remove</Button>
                         </ThemeProvider>
                     </div>
                 </CardContent>
