@@ -2,8 +2,10 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: lightgreen !important;
+    padding-left: 80px;
+    padding-right: 25px;
 }
 .card-content-uncheck {
     display: flex;
@@ -11,6 +13,8 @@
     align-items: center;
     justify-content: space-between;
     background-color: white !important;
+    padding-left: 80px;
+    padding-right: 25px;
 }
 
 
@@ -25,6 +29,7 @@
 .task-wrapper {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
 
 }
 .checked{
