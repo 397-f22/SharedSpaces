@@ -10,6 +10,19 @@ const App = () => {
 
   console.log(data);
   if (data === undefined) return <h1>Loading data...</h1>;
+
+  if (!data || !data.tasks) {
+  return (
+    <div className="App">
+      <header className="App-header">
+        <NavBar />
+        </header>
+        <div className="App-content">
+        <TaskModal />
+        </div>
+    </div> 
+  );
+  } else {
   //if (error) return <h1>{error}</h1>;
   //const [tasks, setTasks] = useState([]);
   
@@ -19,13 +32,14 @@ const App = () => {
         <NavBar />
       </header>
       <div className="App-content">
-        {data.tasks.map((task,id) => (
-          <TaskCard id={id} key={id} task={task}/>
+        {Object.values(data.tasks).map((task, i) => (
+          <TaskCard due={task.due} key={task.id} id={task.id} title={task.title} />
         ))
         }
-        {/*<TaskModal tasks={data.tasks} setTasks={data.tasks} />*/}
+        <TaskModal />
       </div>
     </div> 
   );
+};
 };
 export default App;

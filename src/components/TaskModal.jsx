@@ -18,6 +18,7 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
+import { setData } from '../utilities/firebase';
 
 const style = {
 
@@ -48,7 +49,20 @@ const saveStyle = {color:"white", backgroundColor: "purple",
     color: 'white',
     backgroundColor: 'plum',
   }}
-const TaskModal = (tasks, setTasks) =>{
+const TaskModal = () =>{
+
+    //pushes new task json to database
+    const Push = (date, title) => {
+        const check = false;
+        const id = Date.now()
+
+        setData(`/tasks/${id}`, {
+            id: id,
+            title: title,
+            due : date, 
+        }).catch(alert);
+    };
+
     const [show, setShow] = useState(false);
     const [title, setTitle] = useState("");
     const [due, setDue] = useState("");
@@ -56,10 +70,12 @@ const TaskModal = (tasks, setTasks) =>{
     const handleClose = () => setShow(false);
     const handleOpen = () => setShow(true);
 
-    const saveValues = () => {
-        const check = false;
-        setTasks([...tasks, {title, due, check}]);
-    }
+
+    //const saveValues = () => {
+        // add straight to database
+    //    const check = false;
+    //    setTasks([...tasks, {title, due, check}]);
+    //}
 
     const styles = {
         floatingLabelFocusStyle: {
@@ -77,6 +93,10 @@ const TaskModal = (tasks, setTasks) =>{
         setDue(returnDate);
         setDate(date);
     }
+
+    
+
+    
     
     return (
         <ThemeProvider theme={headerTheme}>
@@ -99,7 +119,7 @@ const TaskModal = (tasks, setTasks) =>{
                         }}}/>
                         {/* <TextField sx={textFieldStyle} id="standard-basic" label="Due Date" variant="standard" defaultValue="" onChange={(event) => setDue(event.target.value)}/> */}
                         <DatePicker onChange={(value) => {formatDate(value)}} value={date} />
-                        <Button size="small" sx={saveStyle} onClick={() => saveValues()}>Save</Button>
+                        <Button size="small" sx={saveStyle} onClick={() => Push(due, title)}>Save</Button>
                         </Box>
                         <Box sx={boxStyle}>
                         <TextField
