@@ -7,19 +7,15 @@ import {useState} from 'react';
 import {ThemeProvider } from '@mui/material/styles';
 import {headerTheme} from '../styles/Themes';
 import Button from '@mui/material/Button';
-import { setData, useDbUpdate } from '../utilities/firebase';
-
-
+import { setData, useDbUpdate, removeData } from '../utilities/firebase';
 const TaskCard = ({due, id, title, checked}) =>{
-    const [tasks, setTasks] = useState([]);
+    // const [tasks, setTasks] = useState([]);
+    console.log(id);
     const [update, result] = useDbUpdate(`/tasks/${id}`);
     // const [checked, setChecked] = useState(false);
-    const remove=(evt)=>{
+    const remove=() =>{
         // remove directly from db rather than using state
-        const newState = tasks.filter(obj => obj != task);
-        setTasks(newState);
-        evt.preventDefault();
-        update(state);
+        removeData(`/tasks/${id}`);
     }
     const changeChecked = ()=>{
         setData(`/tasks/${id}`, {
@@ -44,7 +40,7 @@ const TaskCard = ({due, id, title, checked}) =>{
                             {due}
                         </Typography>
                         </div>
-                        <Button size="small" onClick={(evt) => remove(evt)} variant='contained'>Remove</Button>
+                        <Button size="small" onClick={(evt) => remove()} variant='contained'>Remove</Button>
                         </ThemeProvider>
                     </div>
                 </CardContent>
