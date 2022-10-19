@@ -8,7 +8,8 @@ import {ThemeProvider } from '@mui/material/styles';
 import {headerTheme} from '../styles/Themes';
 import Button from '@mui/material/Button';
 import { setData, useDbUpdate, removeData } from '../utilities/firebase';
-const TaskCard = ({due, id, title, checked}) =>{
+
+const TaskCard = ({due, id, title, checked, assignedTo}) =>{
     // const [tasks, setTasks] = useState([]);
     console.log(id);
     const [update, result] = useDbUpdate(`/tasks/${id}`);
@@ -23,6 +24,8 @@ const TaskCard = ({due, id, title, checked}) =>{
             title: title,
             due : due, 
             checked: !checked,
+            assigned_to: assignedTo,
+            assigned_from: "you",
         }).catch(alert);
     }   
     return  (
@@ -30,17 +33,20 @@ const TaskCard = ({due, id, title, checked}) =>{
             <Card variant="outlined" sx={{width:1}}>
                 <CardContent>
                     <div className={checked ? "card-content-check" : "card-content-uncheck" }>
-                    <input type="checkbox" id="checkbox" name="vehicle1" checked={checked} onChange={() => changeChecked()}></input>
-                    <ThemeProvider theme={headerTheme}>
-                        <div className='task-wrapper'>
-                        <Typography variant="h5" component="div">
-                            {title}
-                        </Typography>
-                        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                            {due}
-                        </Typography>
-                        </div>
-                        <Button size="small" onClick={(evt) => remove()} variant='contained'>Remove</Button>
+                        <input type="checkbox" id="checkbox" name="vehicle1" checked={checked} onChange={() => changeChecked()}></input>
+                        <ThemeProvider theme={headerTheme}>
+                            <div className='task-wrapper'>
+                                <Typography sx={{ fontSize: 14 }} color="text.secondary">
+                                    {assignedTo}
+                                </Typography>
+                                <Typography variant="h5" component="div">
+                                    {title}
+                                </Typography>
+                                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                    {due}
+                                </Typography>
+                            </div>
+                            <Button size="small" onClick={(evt) => remove()} variant='contained'>Remove</Button>
                         </ThemeProvider>
                     </div>
                 </CardContent>

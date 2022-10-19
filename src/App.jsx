@@ -33,7 +33,7 @@ const App = () => {
       </header>
       <div className="App-content">
         {Object.values(data.tasks).map((task, i) => (
-          <TaskCard due={task.due} key={task.id} id={task.id} title={task.title} checked={task.checked} />
+          <TaskCard due={task.due} key={task.id} id={task.id} title={task.title} assignedTo={task.assigned_to} checked={task.checked} />
         ))
         }
         <TaskModal />

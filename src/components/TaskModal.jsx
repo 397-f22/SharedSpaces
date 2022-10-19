@@ -32,8 +32,10 @@ const boxStyle = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
-    height:128,
+    width: '50%',
+    height: 'auto',
+    paddingTop: '3%',
+    paddingBottom: '3%',
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -43,7 +45,7 @@ const boxStyle = {
     alignItems: "center"
 };
   
-const textFieldStyle={width:"30%",color:"common.black",padding:"17px"}
+const textFieldStyle={width:"80%",color:"common.black",padding:"5%"}
 const saveStyle = {color:"white", backgroundColor: "purple",
 '&:hover': {
     color: 'white',
@@ -52,7 +54,7 @@ const saveStyle = {color:"white", backgroundColor: "purple",
 const TaskModal = () =>{
 
     //pushes new task json to database
-    const Push = (date, title) => {
+    const Push = (date, title, assignedTo, assignedFrom) => {
         const check = false;
         const id = Date.now()
 
@@ -61,13 +63,16 @@ const TaskModal = () =>{
             title: title,
             due : date, 
             checked: false,
+            assigned_to: assignedTo,
+            assigned_from: "you"
         }).catch(alert);
     };
 
     const [show, setShow] = useState(false);
     const [title, setTitle] = useState("");
     const [due, setDue] = useState("");
-    const [date, setDate] = useState(new Date())
+    const [date, setDate] = useState(new Date());
+    const [assignedTo, setAssignedTo] = useState("");
     const handleClose = () => setShow(false);
     const handleOpen = () => setShow(true);
 
@@ -113,14 +118,21 @@ const TaskModal = () =>{
                     >
                         <FormControl fullWidth>
                         <Box sx={boxStyle}>
+                        <div className="task-assignment">
                         <TextField sx={textFieldStyle} id="standard-basic" label="Task" variant="standard" defaultValue="" onChange={(event) => setTitle(event.target.value)} InputLabelProps ={{sx: {
                             color: "purple", [`&.${inputLabelClasses.shrink}`]: {
                                 color: "purple"
                             }
                         }}}/>
+                        <TextField sx={textFieldStyle} id="standard-basic" label="Assign to" variant="standard" defaultValue="" onChange={(event) => setAssignedTo(event.target.value)} InputLabelProps ={{sx: {
+                            color: "purple", [`&.${inputLabelClasses.shrink}`]: {
+                                color: "purple"
+                            }
+                        }}}/>
+                        </div>
                         {/* <TextField sx={textFieldStyle} id="standard-basic" label="Due Date" variant="standard" defaultValue="" onChange={(event) => setDue(event.target.value)}/> */}
                         <DatePicker onChange={(value) => {formatDate(value)}} value={date} />
-                        <Button size="small" sx={saveStyle} onClick={() => Push(due, title)}>Save</Button>
+                        <Button size="small" sx={saveStyle} onClick={() => Push(due, title, assignedTo)}>Save</Button>
                         </Box>
                         </FormControl>
                     </Modal>

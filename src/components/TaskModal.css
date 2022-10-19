@@ -11,3 +11,8 @@
 .inputlabel {
     color: black;
 }
+
+.task-assignment {
+    display: flex;
+    flex-direction: column;
+}

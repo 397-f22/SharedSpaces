@@ -49,3 +49,16 @@ button {
   height:100%;
 }
 
+.card-container {
+  display: flex;
+}
+
+.task-and-remove {
+  display: flex;
+  flex-direction: row;
+}
+
+.assignment {
+  margin: 0%;
+}
+
