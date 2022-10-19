@@ -13,13 +13,18 @@ import { purple } from '@mui/material/colors';
 import './TaskModal.css'
 import { inputLabelClasses } from "@mui/material/InputLabel";
 import DatePicker from 'react-date-picker';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+
+import { setData } from '../utilities/firebase';
 
 const style = {
 
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
-
+    justifyContent: "center"
 
 };
 const boxStyle = {
@@ -28,18 +33,37 @@ const boxStyle = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
+    height:128,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
-    p: 4,
-  };
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center"
+};
+  
 const textFieldStyle={width:"30%",color:"common.black",padding:"17px"}
 const saveStyle = {color:"white", backgroundColor: "purple",
 '&:hover': {
     color: 'white',
     backgroundColor: 'plum',
-  }, marginLeft:"20px", marginBottom:"5px"}
-const TaskModal = ({tasks, setTasks}) =>{
+  }}
+const TaskModal = () =>{
+
+    //pushes new task json to database
+    const Push = (date, title) => {
+        const check = false;
+        const id = Date.now()
+
+        setData(`/tasks/${id}`, {
+            id: id,
+            title: title,
+            due : date, 
+            checked: false,
+        }).catch(alert);
+    };
+
     const [show, setShow] = useState(false);
     const [title, setTitle] = useState("");
     const [due, setDue] = useState("");
@@ -47,10 +71,12 @@ const TaskModal = ({tasks, setTasks}) =>{
     const handleClose = () => setShow(false);
     const handleOpen = () => setShow(true);
 
-    const saveValues = () => {
-        const check = false;
-        setTasks([...tasks, {title, due, check}]);
-    }
+
+    //const saveValues = () => {
+        // add straight to database
+    //    const check = false;
+    //    setTasks([...tasks, {title, due, check}]);
+    //}
 
     const styles = {
         floatingLabelFocusStyle: {
@@ -68,6 +94,10 @@ const TaskModal = ({tasks, setTasks}) =>{
         setDue(returnDate);
         setDate(date);
     }
+
+    
+
+    
     
     return (
         <ThemeProvider theme={headerTheme}>
@@ -81,6 +111,7 @@ const TaskModal = ({tasks, setTasks}) =>{
                     style={style}
                     // hideBackdrop = "true"
                     >
+                        <FormControl fullWidth>
                         <Box sx={boxStyle}>
                         <TextField sx={textFieldStyle} id="standard-basic" label="Task" variant="standard" defaultValue="" onChange={(event) => setTitle(event.target.value)} InputLabelProps ={{sx: {
                             color: "purple", [`&.${inputLabelClasses.shrink}`]: {
@@ -89,8 +120,9 @@ const TaskModal = ({tasks, setTasks}) =>{
                         }}}/>
                         {/* <TextField sx={textFieldStyle} id="standard-basic" label="Due Date" variant="standard" defaultValue="" onChange={(event) => setDue(event.target.value)}/> */}
                         <DatePicker onChange={(value) => {formatDate(value)}} value={date} />
-                        <Button size="small" sx={saveStyle} onClick={() => saveValues()}>Save</Button>
+                        <Button size="small" sx={saveStyle} onClick={() => Push(due, title)}>Save</Button>
                         </Box>
+                        </FormControl>
                     </Modal>
             </div>
         </ThemeProvider>
