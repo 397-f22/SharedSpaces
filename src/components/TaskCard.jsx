@@ -32,13 +32,15 @@ const TaskCard = ({due, id, title, checked, assignedTo}) =>{
         <div className="card-container" >
             <Card variant="outlined" sx={{width:1}}>
                 <CardContent>
-                    <div className={checked ? "card-content-check" : "card-content-uncheck" }>
-                        <input type="checkbox" id="checkbox" name="vehicle1" checked={checked} onChange={() => changeChecked()}></input>
+                    <div className="card-content-checkbox">
+                        <div className='label-container'>
+                            <input type="checkbox" id="checkbox" name="vehicle1" checked={checked} onChange={() => changeChecked()}></input>
+                            <label className="assign"><Typography sx={{ fontSize: 22 }} color="gray" gutterBottom>
+                                    {assignedTo}
+                                </Typography></label>
+                        </div>
                         <ThemeProvider theme={headerTheme}>
                             <div className='task-wrapper'>
-                                <Typography sx={{ fontSize: 14 }} color="text.secondary">
-                                    {assignedTo}
-                                </Typography>
                                 <Typography variant="h5" component="div">
                                     {title}
                                 </Typography>
