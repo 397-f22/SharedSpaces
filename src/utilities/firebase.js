@@ -84,3 +84,9 @@ export const useAuthState = () => {
 
   return [user];
 };
+
+export const getUserInfo = ()=>{
+
+  // console.log(getAuth(firebase).currentUser.displayName);
+  return getAuth(firebase).currentUser.displayName;
+}

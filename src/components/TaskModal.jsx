@@ -18,7 +18,8 @@ import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
-import { setData } from '../utilities/firebase';
+import { setData,getUserInfo } from '../utilities/firebase';
+
 
 const style = {
 
@@ -74,7 +75,10 @@ const TaskModal = () =>{
     const [date, setDate] = useState(new Date());
     const [assignedTo, setAssignedTo] = useState("");
     const handleClose = () => setShow(false);
-    const handleOpen = () => setShow(true);
+    const handleOpen = () => {
+        //get firebase user info
+        getUserInfo();
+        setShow(true)};
 
 
     //const saveValues = () => {
