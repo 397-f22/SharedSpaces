@@ -41,10 +41,10 @@ const TaskCard = ({due, id, title, checked, assignedTo}) =>{
                         </div>
                         <ThemeProvider theme={headerTheme}>
                             <div className='task-wrapper'>
-                                <Typography variant="h5" component="div">
+                                <Typography variant="h5" component="div" className={checked ? "done" : ""}>
                                     {title}
                                 </Typography>
-                                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom className={checked ? "done" : ""}>
                                     {due}
                                 </Typography>
                             </div>
