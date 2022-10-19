@@ -1,18 +1,8 @@
-.card-content-check {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    background-color: lightgreen !important;
-    padding-left: 80px;
-    padding-right: 25px;
-}
-.card-content-uncheck {
+.card-content-checkbox {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: white !important;
     padding-left: 80px;
     padding-right: 25px;
 }
@@ -38,4 +28,16 @@
 .notChecked{
     background-color: white;
 }
+.assign{
+    margin-left: 20%;
+}
+.label-container{
+    display: flex;
+}
+.assigned-to{
+    font-size: 12px;
+}
 
+.done {
+    text-decoration: line-through;
+}
