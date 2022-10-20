@@ -167,7 +167,7 @@ const TaskModal = () =>{
                                     onChange ={(event) => setAssignedTo(event.target.value)}>
                                     {
                                         Object.values(user_list.users).map((user, i) => (
-                                            <MenuItem value={user.displayName.split(" ")[0]}> {user.displayName.split(" ")[0]}</MenuItem>
+                                            <MenuItem key={user.uid} value={user.displayName.split(" ")[0]}> {user.displayName.split(" ")[0]}</MenuItem>
                                           ))
                                             
                                     }
