@@ -62,6 +62,12 @@ const saveStyle = {color:"white", backgroundColor: "orchid", fontFamily: 'Ubuntu
     backgroundColor: '#D4AFCD',
   }}
 const TaskModal = () =>{
+    const [show, setShow] = useState(false);
+    const [title, setTitle] = useState("");
+    const [due, setDue] = useState("Today");
+    const [date, setDate] = useState(new Date());
+    const [assignedTo, setAssignedTo] = useState("");
+    const [user] = useAuthState();
     const [user_list, user_list_isLoading, user_list_error] = useJsonQuery('https://fast-woodland-19078.herokuapp.com/allUsers');
     if (user_list_error) return <h1>Error: {`${user_list_error}`}</h1>;
     if (user_list_isLoading) return <h1>Loading user data...</h1>;
@@ -92,22 +98,15 @@ const TaskModal = () =>{
         handleClose()
     };
 
-    const [show, setShow] = useState(false);
-    const [title, setTitle] = useState("");
-    const [due, setDue] = useState("Today");
-    const [date, setDate] = useState(new Date());
-    const [assignedTo, setAssignedTo] = useState("");
-    const [user] = useAuthState();
+    
         
     const handleClose = () => setShow(false);
     const handleOpen = () => {
         //get firebase user info
-
         if (user){
          assigned_by = getUserInfo();   
-        
         }
-        setShow(true)
+        setShow(true);
         console.log(assigned_by);
     };
 
