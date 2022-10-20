@@ -7,6 +7,7 @@ import { useDbData } from "./utilities/firebase";
 import { useDbUpdate } from './utilities/firebase';
 const App = () => {
   const [data, error] = useDbData('/');
+  const [userName, setUserName] = useState("");
 
   console.log(data);
   if (data === undefined) return <h1>Loading data...</h1>;
