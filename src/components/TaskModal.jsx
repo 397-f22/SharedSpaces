@@ -17,8 +17,9 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-
 import { setData,getUserInfo } from '../utilities/firebase';
+import '../index.css';
+
 
 
 const style = {
@@ -48,11 +49,15 @@ const boxStyle = {
     borderRadius: "25px"
 };
   
-const textFieldStyle={width:"80%",color:"common.black",padding:"5%"}
-const saveStyle = {color:"white", backgroundColor: "#D4AFCD",
+const textFieldStyle={width:"80%",color:"#556F7A",padding:"5%", fontFamily: 'Ubuntu'}
+const saveStyle = {color:"white", backgroundColor: "orchid", fontFamily: 'Ubuntu',
 '&:hover': {
     color: 'white',
-    backgroundColor: 'plum',
+    backgroundColor: '#B79FAD',
+  },
+  '&:active': {
+    color: 'white',
+    backgroundColor: '#D4AFCD',
   }}
 const TaskModal = () =>{
 
@@ -69,11 +74,14 @@ const TaskModal = () =>{
             assigned_to: assignedTo,
             assigned_from: "you"
         }).catch(alert);
+        setDue("Today")
+        setDate(new Date())
+        handleClose()
     };
 
     const [show, setShow] = useState(false);
     const [title, setTitle] = useState("");
-    const [due, setDue] = useState("");
+    const [due, setDue] = useState("Today");
     const [date, setDate] = useState(new Date());
     const [assignedTo, setAssignedTo] = useState("");
     const handleClose = () => setShow(false);
@@ -113,7 +121,7 @@ const TaskModal = () =>{
     return (
         <ThemeProvider theme={headerTheme}>
             <div className="task-modal">
-                <Button size="small" onClick={handleOpen}  variant='contained'>Add Task</Button>
+                <Button sx = {{fontFamily: 'Ubuntu', color: "#556F7A"}} size="small" onClick={handleOpen}  variant='contained'>Add Task</Button>
                     <Modal
                     open={show}
                     onClose={handleClose}

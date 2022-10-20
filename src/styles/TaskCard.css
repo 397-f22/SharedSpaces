@@ -34,6 +34,7 @@
 }
 .label-container{
     display: flex;
+    float: left;
 }
 .assigned-to{
     font-size: 12px;
@@ -51,7 +52,7 @@
     color: #556f7a;
 }
 .not-done2{
-    color: #2E6171;
+    color: whitesmoke;
 }
 .cardChecked{
     background-color: #B79FAD;
