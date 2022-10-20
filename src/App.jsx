@@ -17,7 +17,7 @@ const App = () => {
   const cardStyle = {
 
   }
-  console.log(data);
+  //console.log(data);
   if (data === undefined) return <h1>Loading data...</h1>;
 
   if (!data || !data.tasks) {
