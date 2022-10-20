@@ -25,7 +25,8 @@ const style = {
 
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    borderRadius: "25px"
 
 };
 const boxStyle = {
@@ -38,16 +39,17 @@ const boxStyle = {
     paddingTop: '3%',
     paddingBottom: '3%',
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    border: '2px solid #2E6171',
     boxShadow: 24,
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
-    alignItems: "center"
+    alignItems: "center",
+    borderRadius: "25px"
 };
   
 const textFieldStyle={width:"80%",color:"common.black",padding:"5%"}
-const saveStyle = {color:"white", backgroundColor: "purple",
+const saveStyle = {color:"white", backgroundColor: "#D4AFCD",
 '&:hover': {
     color: 'white',
     backgroundColor: 'plum',
@@ -132,13 +134,13 @@ const TaskModal = () =>{
                         <Box sx={boxStyle}>
                         <div className="task-assignment">
                         <TextField sx={textFieldStyle} id="standard-basic" label="Task" variant="standard" defaultValue="" onChange={(event) => setTitle(event.target.value)} InputLabelProps ={{sx: {
-                            color: "purple", [`&.${inputLabelClasses.shrink}`]: {
-                                color: "purple"
+                            color: "#2E6171", [`&.${inputLabelClasses.shrink}`]: {
+                                color: "#2E6171"
                             }
                         }}}/>
                         <TextField sx={textFieldStyle} id="standard-basic" label="Assign to" variant="standard" defaultValue="" onChange={(event) => setAssignedTo(event.target.value)} InputLabelProps ={{sx: {
-                            color: "purple", [`&.${inputLabelClasses.shrink}`]: {
-                                color: "purple"
+                            color: "#2E6171", [`&.${inputLabelClasses.shrink}`]: {
+                                color: "#2E6171"
                             }
                         }}}/>
                         </div>

@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@font-face {
+  font-family: "Ubuntu";
+  src: local("Ubuntu-Regular"),
+    url("./fonts/Ubuntu-Regular.ttf") format("truetype");
+  font-weight: normal;
+}

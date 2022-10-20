@@ -10,13 +10,15 @@ import {ThemeProvider } from '@mui/material/styles';
 import {headerTheme} from '../styles/Themes';
 //import { NavLink } from 'react-router-dom';
 import { signInWithGoogle, signOut, useAuthState } from '../utilities/firebase';
-
+const style = {
+  backgroundColor: "whitesmoke", color: "#2E6171"
+}
 const SignInButton = () => (
-  <button className="ms-auto btn btn-dark" onClick={signInWithGoogle}>Sign in</button>
+  <Button size="small" sx= {style} onClick={() => signInWithGoogle}>Sign in</Button>
 );
 
 const SignOutButton = () => (
-  <button className="ms-auto btn btn-dark" onClick={signOut}>Sign out</button>
+  <Button size="small" sx= {style}  onClick={() => signOut}>Sign Out</Button>
 );
 
 const AuthButton = () => {
@@ -31,9 +33,9 @@ const NavBar = () => {
   return (
     <ThemeProvider theme={headerTheme}>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static" sx={{ backgroundColor: "plum" }}>
+        <AppBar position="static" sx={{ backgroundColor: "#2E6171" }}>
           <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Typography variant="h6" component="div" color="white" sx={{ flexGrow: 1, paddingLeft: 15, fontSize: 30}}>
               SharedSpaces
             </Typography>
             <AuthButton />
