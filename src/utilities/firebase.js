@@ -71,7 +71,9 @@ export const signInWithGoogle = () => {
   signInWithPopup(getAuth(firebase), new GoogleAuthProvider());
 };
 
-const firebaseSignOut = () => signOut(getAuth(firebase));
+const firebaseSignOut = () => {
+  console.log("sign out");
+  signOut(getAuth(firebase))};
 
 export { firebaseSignOut as signOut };
 

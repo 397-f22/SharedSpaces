@@ -24,11 +24,11 @@ const style = {color:"#2E6171", backgroundColor: "whitesmoke", fontFamily: 'Ubun
 
 
 const SignInButton = () => (
-  <Button size="small" sx= {style} onClick={() => signInWithGoogle}>Sign in</Button>
+  <Button size="small" sx= {style} onClick={() => signInWithGoogle()}>Sign in</Button>
 );
 
 const SignOutButton = () => (
-  <Button size="small" sx= {style}  onClick={() => signOut}>Sign Out</Button>
+  <Button size="small" sx= {style}  onClick={() => signOut()}>Sign Out</Button>
 );
 
 const AuthButton = () => {

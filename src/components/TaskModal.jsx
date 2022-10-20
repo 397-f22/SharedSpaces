@@ -17,15 +17,12 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-<<<<<<< HEAD
-import { setData,getUserInfo } from '../utilities/firebase';
+
 import '../index.css';
 
-=======
+
 
 import { setData,getUserInfo,useAuthState } from '../utilities/firebase';
->>>>>>> 437c36f49d549c1fed645e6d46967020a5842e33
-
 
 const style = {
 
