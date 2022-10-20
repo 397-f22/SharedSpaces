@@ -8,6 +8,8 @@ import { useDbUpdate } from './utilities/firebase';
 const App = () => {
   const [data, error] = useDbData('/');
   const [userName, setUserName] = useState("");
+  const [show, setShow] = useState(false);
+  const [editingCard, setEditingCard] = useState(null);
   const cardStyle = {
 
   }
@@ -37,10 +39,10 @@ const App = () => {
       <div className="App-content">
         {Object.values(data.tasks).map((task, i) => (
           <TaskCard 
-          due={task.due} key={task.id} id={task.id} title={task.title} assignedTo={task.assigned_to} checked={task.checked} />
+          due={task.due} key={task.id} id={task.id} title={task.title} assignedTo={task.assigned_to} checked={task.checked} show={show} setShow={setShow} setEditingCard={setEditingCard} data={data}/>
         ))
         }
-        <TaskModal />
+        <TaskModal show={show} setShow={setShow} editingCard={editingCard} setEditingCard={setEditingCard} data={data}/>
       </div>
     </div> 
   );

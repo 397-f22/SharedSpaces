@@ -3,7 +3,7 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import {useState} from 'react';
+import {useState,useEffect} from 'react';
 import '../styles/TaskModal.css';
 import {ThemeProvider } from '@mui/material/styles';
 import {headerTheme} from '../styles/Themes';
@@ -61,12 +61,19 @@ const saveStyle = {color:"white", backgroundColor: "orchid", fontFamily: 'Ubuntu
     color: 'white',
     backgroundColor: '#D4AFCD',
   }}
-const TaskModal = () =>{
+const TaskModal = ({show, setShow, editingCard, setEditingCard, data}) =>{
+    useEffect(() => {
+        console.log(editingCard);
+        if (editingCard) {
+            console.log(data[editingCard]);
+            setDate(reverseFormatDate(data.tasks[editingCard].due));
+        }
+      }, [editingCard])
     let assigned_by;
     //pushes new task json to database
     const Push = (date, title, assignedTo, assignedFrom) => {
         const check = false;
-        const id = Date.now()
+        const id = editingCard ? editingCard : Date.now();
 
         setData(`/tasks/${id}`, {
             id: id,
@@ -76,15 +83,24 @@ const TaskModal = () =>{
             assigned_to: assignedTo,
             assigned_from: "you"
         }).catch(alert);
-        setDue("Today")
         setDate(new Date())
         handleClose()
     };
 
-    const [show, setShow] = useState(false);
+    // Takes in month/day and turns back into date object
+    const reverseFormatDate=(dueString)=>{
+        console.log(dueString);
+        const monthDay = dueString.split("/");
+        console.log(monthDay);
+        console.log("Month");
+        console.log(parseInt(monthDay[0])-1);
+        console.log(parseInt(monthDay[1]));
+        return new Date(2022, parseInt(monthDay[0])-1, parseInt(monthDay[1]));
+    }
+
     const [title, setTitle] = useState("");
-    const [due, setDue] = useState("Today");
-    const [date, setDate] = useState(new Date());
+    const [due, setDue] = useState("");
+    const [date, setDate] = useState(editingCard ? reverseFormatDate(data.tasks[editingCard].due) : new Date());
     const [assignedTo, setAssignedTo] = useState("");
     const [user] = useAuthState();
         
@@ -124,6 +140,11 @@ const TaskModal = () =>{
         setDate(date);
     }
 
+    const addTask = () => {
+        handleOpen();
+        setEditingCard(null);
+        setDate(new Date());
+    }
     
 
     
@@ -131,7 +152,7 @@ const TaskModal = () =>{
     return (
         <ThemeProvider theme={headerTheme}>
             <div className="task-modal">
-                <Button sx = {{fontFamily: 'Ubuntu', color: "#556F7A"}} size="small" onClick={handleOpen}  variant='contained'>Add Task</Button>
+                <Button sx = {{fontFamily: 'Ubuntu', color: "#556F7A"}} size="small" onClick={() => addTask()}  variant='contained'>Add Task</Button>
                     <Modal
                     open={show}
                     onClose={handleClose}
@@ -143,12 +164,12 @@ const TaskModal = () =>{
                         <FormControl fullWidth>
                         <Box sx={boxStyle}>
                         <div className="task-assignment">
-                        <TextField sx={textFieldStyle} id="standard-basic" label="Task" variant="standard" defaultValue="" onChange={(event) => setTitle(event.target.value)} InputLabelProps ={{sx: {
+                        <TextField value={editingCard ? data.tasks[editingCard].title : null} sx={textFieldStyle} id="standard-basic" label="Task" variant="standard" defaultValue="" onChange={(event) => setTitle(event.target.value)} InputLabelProps ={{sx: {
                             color: "#2E6171", [`&.${inputLabelClasses.shrink}`]: {
                                 color: "#2E6171"
                             }
                         }}}/>
-                        <TextField sx={textFieldStyle} id="standard-basic" label="Assign to" variant="standard" defaultValue="" onChange={(event) => setAssignedTo(event.target.value)} InputLabelProps ={{sx: {
+                        <TextField value={editingCard ? data.tasks[editingCard].assigned_to : null} sx={textFieldStyle} id="standard-basic" label="Assign to" variant="standard" defaultValue="" onChange={(event) => setAssignedTo(event.target.value)} InputLabelProps ={{sx: {
                             color: "#2E6171", [`&.${inputLabelClasses.shrink}`]: {
                                 color: "#2E6171"
                             }

@@ -9,8 +9,10 @@ import {headerTheme} from '../styles/Themes';
 import Button from '@mui/material/Button';
 import { setData, useDbUpdate, removeData } from '../utilities/firebase';
 import '../index.css';
+import EditIcon from '@mui/icons-material/Edit';
+import { unstable_batchedUpdates } from 'react-dom';
 
-const TaskCard = ({due, id, title, checked, assignedTo}) =>{
+const TaskCard = ({due, id, title, checked, assignedTo, show, setShow, setEditingCard}) =>{
     // const [tasks, setTasks] = useState([]);
     console.log(id);
     const [update, result] = useDbUpdate(`/tasks/${id}`);
@@ -55,6 +57,11 @@ const TaskCard = ({due, id, title, checked, assignedTo}) =>{
         }
     }
 
+    const openEditModal = () => unstable_batchedUpdates(() => {
+        setEditingCard(id);
+        setShow(open);
+    });
+
     return  (
         <div className="card-container">
             <Card variant="outlined" className={checked ? "cardChecked" : "cardUnchecked"} sx={{width:1, borderRadius: "15px", minHeight: '20%', maxHeight: '20%', margin: '0.2vw', fontFamily: 'Ubuntu'}}>
@@ -68,9 +75,12 @@ const TaskCard = ({due, id, title, checked, assignedTo}) =>{
                         </div>
                         <ThemeProvider theme={headerTheme}>
                             <div className='task-wrapper'>
+                                <div className='titleEdit'>
                                 <Typography variant="h5" sx = {{flexGrow: 1, fontFamily: 'Ubuntu'}} component="div" className={checked ? "done1" : "not-done1"}>
                                     {title}
                                 </Typography>
+                                <EditIcon id="editButton" onClick={() => {setEditingCard(id); setShow(true)}} />
+                                </div>
                                 <Typography sx={{ fontSize: 16, flexGrow: 1, fontFamily: 'Ubuntu'}} gutterBottom className={checked ? "done2" : "not-done2"}>
                                     {due}
                                 </Typography>
