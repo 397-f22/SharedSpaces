@@ -17,9 +17,9 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-
+import { useJsonQuery } from '../utilities/firebase';
 import '../index.css';
-
+import {user_list} from '../utilities/userList';
 
 
 import { setData,getUserInfo,useAuthState } from '../utilities/firebase';
@@ -62,6 +62,17 @@ const saveStyle = {color:"white", backgroundColor: "orchid", fontFamily: 'Ubuntu
     backgroundColor: '#D4AFCD',
   }}
 const TaskModal = () =>{
+    const [user_list, user_list_isLoading, user_list_error] = useJsonQuery('https://fast-woodland-19078.herokuapp.com/allUsers');
+    if (user_list_error) return <h1>Error: {`${user_list_error}`}</h1>;
+    if (user_list_isLoading) return <h1>Loading user data...</h1>;
+    if (!user_list) return <h1>No user data found</h1>;
+
+    //console.log("User_list:"+JSON.stringify(user_list));
+    
+    // for (const [key, value] of Object.entries(user_list.users)) {
+    //     console.log(`${key}: ${JSON.stringify(value.displayName)}`);
+    // }
+      
     let assigned_by;
     //pushes new task json to database
     const Push = (date, title, assignedTo, assignedFrom) => {
@@ -148,11 +159,22 @@ const TaskModal = () =>{
                                 color: "#2E6171"
                             }
                         }}}/>
-                        <TextField sx={textFieldStyle} id="standard-basic" label="Assign to" variant="standard" defaultValue="" onChange={(event) => setAssignedTo(event.target.value)} InputLabelProps ={{sx: {
-                            color: "#2E6171", [`&.${inputLabelClasses.shrink}`]: {
-                                color: "#2E6171"
-                            }
-                        }}}/>
+                        <InputLabel sx={textFieldStyle} id="demo-simple-select-label">Assign to</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={assignedTo}
+                                    label="Assign to"
+                                    onChange ={(event) => setAssignedTo(event.target.value)}>
+                                    {
+                                        Object.values(user_list.users).map((user, i) => (
+                                            <MenuItem value={user.displayName.split(" ")[0]}> {user.displayName.split(" ")[0]}</MenuItem>
+                                          ))
+                                            
+                                    }
+                                   
+
+                                </Select>
                         </div>
                         {/* <TextField sx={textFieldStyle} id="standard-basic" label="Due Date" variant="standard" defaultValue="" onChange={(event) => setDue(event.target.value)}/> */}
                         <DatePicker onChange={(value) => {formatDate(value)}} value={date} />

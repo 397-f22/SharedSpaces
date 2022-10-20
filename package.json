@@ -13,6 +13,7 @@
         "@emotion/styled": "^11.10.4",
         "@mui/icons-material": "^5.10.6",
         "@mui/material": "^5.10.8",
+        "@tanstack/react-query": "^4.12.0",
         "esbuild-windows-64": "^0.15.11",
         "firebase": "^9.12.1",
         "firebase-admin": "^11.2.0",

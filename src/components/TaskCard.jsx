@@ -9,8 +9,11 @@ import {headerTheme} from '../styles/Themes';
 import Button from '@mui/material/Button';
 import { setData, useDbUpdate, removeData } from '../utilities/firebase';
 import '../index.css';
+import { useJsonQuery } from '../utilities/firebase';
 
 const TaskCard = ({due, id, title, checked, assignedTo}) =>{
+    
+
     // const [tasks, setTasks] = useState([]);
     console.log(id);
     const [update, result] = useDbUpdate(`/tasks/${id}`);

@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { initializeApp } from "firebase/app";
 import { getDatabase, onValue, ref, update, set, remove } from 'firebase/database';
 import { getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
+import { useQuery } from '@tanstack/react-query';
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyBg_mjb-096aLiZBvTfJIsN4lEoqDJyBlU",
@@ -94,3 +96,14 @@ export const getUserInfo = ()=>{
 
   return getAuth(firebase).currentUser.displayName;
 }
+//fetch data 
+const fetchJson = async (url) => {
+  const response = await fetch(url);
+  if (!response.ok) throw response;
+  return response.json();
+};
+
+export const useJsonQuery = (url) => {
+  const { data, isLoading, error } = useQuery([url], () => fetchJson(url));
+  return [ data, isLoading, error ];
+};
