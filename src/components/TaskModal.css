@@ -1,13 +1,13 @@
 .saveButton{
     color:"white";
-    background-color: plum;
-
-
+    background-color: orchid;
 }
 .saveButton:hover{
-    background-color: purple;
+    background-color: #B79FAD;
 }
-
+.saveButton:active{
+    background-color: #D4AFCD;
+}
 .inputlabel {
     color: black;
 }

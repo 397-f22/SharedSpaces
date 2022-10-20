@@ -7,7 +7,9 @@ import { useDbData } from "./utilities/firebase";
 import { useDbUpdate } from './utilities/firebase';
 const App = () => {
   const [data, error] = useDbData('/');
+  const cardStyle = {
 
+  }
   console.log(data);
   if (data === undefined) return <h1>Loading data...</h1>;
 
@@ -33,7 +35,8 @@ const App = () => {
       </header>
       <div className="App-content">
         {Object.values(data.tasks).map((task, i) => (
-          <TaskCard due={task.due} key={task.id} id={task.id} title={task.title} assignedTo={task.assigned_to} checked={task.checked} />
+          <TaskCard 
+          due={task.due} key={task.id} id={task.id} title={task.title} assignedTo={task.assigned_to} checked={task.checked} />
         ))
         }
         <TaskModal />

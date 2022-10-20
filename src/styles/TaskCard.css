@@ -13,13 +13,14 @@
     justify-content: space-between;
     margin-left: 5%;
     margin-right: 5%;
-    background-color: white  !important;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .task-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center
 
 }
 .checked{
@@ -38,6 +39,38 @@
     font-size: 12px;
 }
 
-.done {
+.done1 {
     text-decoration: line-through;
+    color: whitesmoke;
 }
+.not-done1{
+    color: #2E6171;
+}
+.done2 {
+    text-decoration: line-through;
+    color: #556f7a;
+}
+.not-done2{
+    color: #2E6171;
+}
+.cardChecked{
+    background-color: #B79FAD;
+    min-height: 50%;
+}
+.cardUnchecked{
+    background-color: #D4AFCD;
+    min-height: 50%;
+}
+#checkbox {
+    accent-color: #2E6171;
+  }
+.save-done{
+    background-color: whitesmoke;
+    color: #2E6171;
+}
+.save-not-done{
+    background-color: #2E6171;
+    color: whitesmoke;
+}
+  
+    

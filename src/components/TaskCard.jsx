@@ -27,28 +27,29 @@ const TaskCard = ({due, id, title, checked, assignedTo}) =>{
             assigned_to: assignedTo,
             assigned_from: "you",
         }).catch(alert);
-    }   
+    }
+
     return  (
-        <div className="card-container" >
-            <Card variant="outlined" sx={{width:1}}>
-                <CardContent>
+        <div className="card-container">
+            <Card variant="outlined" className={checked ? "cardChecked" : "cardUnchecked"} sx={{width:1, borderRadius: "15px", height: '6vw', margin: '0.2vw'}}>
+                <CardContent className={checked ? "cardChecked" : "cardUnchecked"}>
                     <div className="card-content-checkbox">
                         <div className='label-container'>
                             <input type="checkbox" id="checkbox" name="vehicle1" checked={checked} onChange={() => changeChecked()}></input>
-                            <label className="assign"><Typography sx={{ fontSize: 22 }} color="gray" gutterBottom>
+                            <label className="assign"><Typography sx={{ fontSize: 22, flexGrow: 1 }} className={checked ? "done1" : "not-done1"} gutterBottom>
                                     {assignedTo}
                                 </Typography></label>
                         </div>
                         <ThemeProvider theme={headerTheme}>
                             <div className='task-wrapper'>
-                                <Typography variant="h5" component="div" className={checked ? "done" : ""}>
+                                <Typography variant="h5" sx = {{flexGrow: 1}} component="div" className={checked ? "done1" : "not-done1"}>
                                     {title}
                                 </Typography>
-                                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom className={checked ? "done" : ""}>
+                                <Typography sx={{ fontSize: 14, flexGrow: 1}} gutterBottom className={checked ? "done2" : "not-done2"}>
                                     {due}
                                 </Typography>
                             </div>
-                            <Button size="small" onClick={(evt) => remove()} variant='contained'>Remove</Button>
+                            <Button sx={checked ? "save-done" : "save-not-done"} size="small" onClick={(evt) => remove()} variant='contained'>Remove</Button>
                         </ThemeProvider>
                     </div>
                 </CardContent>
