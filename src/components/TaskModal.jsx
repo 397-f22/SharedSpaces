@@ -17,9 +17,14 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+<<<<<<< HEAD
 import { setData,getUserInfo } from '../utilities/firebase';
 import '../index.css';
 
+=======
+
+import { setData,getUserInfo,useAuthState } from '../utilities/firebase';
+>>>>>>> 437c36f49d549c1fed645e6d46967020a5842e33
 
 
 const style = {
@@ -60,7 +65,7 @@ const saveStyle = {color:"white", backgroundColor: "orchid", fontFamily: 'Ubuntu
     backgroundColor: '#D4AFCD',
   }}
 const TaskModal = () =>{
-
+    let assigned_by;
     //pushes new task json to database
     const Push = (date, title, assignedTo, assignedFrom) => {
         const check = false;
@@ -84,11 +89,19 @@ const TaskModal = () =>{
     const [due, setDue] = useState("Today");
     const [date, setDate] = useState(new Date());
     const [assignedTo, setAssignedTo] = useState("");
+    const [user] = useAuthState();
+        
     const handleClose = () => setShow(false);
     const handleOpen = () => {
         //get firebase user info
-        getUserInfo();
-        setShow(true)};
+
+        if (user){
+         assigned_by = getUserInfo();   
+        
+        }
+        setShow(true)
+        console.log(assigned_by);
+    };
 
 
     //const saveValues = () => {
