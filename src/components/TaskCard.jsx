@@ -15,7 +15,7 @@ const TaskCard = ({due, id, title, checked, assignedTo}) =>{
     
 
     // const [tasks, setTasks] = useState([]);
-    console.log(id);
+    //console.log(id);
     const [update, result] = useDbUpdate(`/tasks/${id}`);
     // const [checked, setChecked] = useState(false);
     const remove=() =>{
