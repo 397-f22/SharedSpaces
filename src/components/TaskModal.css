@@ -16,3 +16,10 @@
     display: flex;
     flex-direction: column;
 }
+
+#demo-simple-select-label {
+    padding: 0 !important;
+    position: absolute !important;
+    top: auto !important;
+    left: auto !important;
+}

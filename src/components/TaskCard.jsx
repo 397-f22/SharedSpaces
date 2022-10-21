@@ -9,11 +9,9 @@ import {headerTheme} from '../styles/Themes';
 import Button from '@mui/material/Button';
 import { setData, useDbUpdate, removeData } from '../utilities/firebase';
 import '../index.css';
-import { useJsonQuery } from '../utilities/firebase';
+import EditIcon from '@mui/icons-material/Edit';
 
-const TaskCard = ({due, id, title, checked, assignedTo}) =>{
-    
-
+const TaskCard = ({due, id, title, checked, assignedTo, show, setShow, setEditingCard}) =>{
     // const [tasks, setTasks] = useState([]);
     //console.log(id);
     const [update, result] = useDbUpdate(`/tasks/${id}`);
@@ -71,9 +69,12 @@ const TaskCard = ({due, id, title, checked, assignedTo}) =>{
                         </div>
                         <ThemeProvider theme={headerTheme}>
                             <div className='task-wrapper'>
+                                <div className='titleEdit'>
                                 <Typography variant="h5" sx = {{flexGrow: 1, fontFamily: 'Ubuntu'}} component="div" className={checked ? "done1" : "not-done1"}>
                                     {title}
                                 </Typography>
+                                <EditIcon id="editButton" onClick={() => {setEditingCard(id); setShow(true)}} />
+                                </div>
                                 <Typography sx={{ fontSize: 16, flexGrow: 1, fontFamily: 'Ubuntu'}} gutterBottom className={checked ? "done2" : "not-done2"}>
                                     {due}
                                 </Typography>

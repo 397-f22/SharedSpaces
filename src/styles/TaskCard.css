@@ -72,4 +72,14 @@
     color: whitesmoke;
 }
   
-    
+.titleEdit {
+    display: flex;
+}    
+
+#editButton {
+    padding: 5px;
+}
+
+#editButton:hover {
+    cursor: pointer;
+}
