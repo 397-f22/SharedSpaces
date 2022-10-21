@@ -65,21 +65,23 @@ const TaskModal = ({show, setShow, editingCard, setEditingCard, data}) =>{
     useEffect(() => {
         console.log(editingCard);
         if (editingCard) {
-            console.log(data[editingCard]);
+            console.log("Ok new editing card!");
             setDate(reverseFormatDate(data.tasks[editingCard].due));
+            setTitle(data.tasks[editingCard].title);
+            setAssignedTo(data.tasks[editingCard].assigned_to);
         }
       }, [editingCard])
     let assigned_by;
     //pushes new task json to database
     const Push = (date, title, assignedTo, assignedFrom) => {
-        const check = false;
+        const check = editingCard ? data.tasks[editingCard].checked : false;
         const id = editingCard ? editingCard : Date.now();
 
         setData(`/tasks/${id}`, {
             id: id,
             title: title,
-            due : date, 
-            checked: false,
+            due : formatDate(date), 
+            checked: check,
             assigned_to: assignedTo,
             assigned_from: "you"
         }).catch(alert);
@@ -98,10 +100,9 @@ const TaskModal = ({show, setShow, editingCard, setEditingCard, data}) =>{
         return new Date(2022, parseInt(monthDay[0])-1, parseInt(monthDay[1]));
     }
 
-    const [title, setTitle] = useState("");
-    const [due, setDue] = useState("");
+    const [title, setTitle] = useState(editingCard ? data.tasks[editingCard].title : "");
     const [date, setDate] = useState(editingCard ? reverseFormatDate(data.tasks[editingCard].due) : new Date());
-    const [assignedTo, setAssignedTo] = useState("");
+    const [assignedTo, setAssignedTo] = useState(editingCard ? data.tasks[editingCard].assigned_to : "");
     const [user] = useAuthState();
         
     const handleClose = () => setShow(false);
@@ -136,14 +137,16 @@ const TaskModal = ({show, setShow, editingCard, setEditingCard, data}) =>{
         const day = date.getDate();
         const returnDate = month.toString() + "/" + day.toString(); 
         console.log(returnDate);
-        setDue(returnDate);
         setDate(date);
+        return returnDate;
     }
 
     const addTask = () => {
         handleOpen();
         setEditingCard(null);
         setDate(new Date());
+        setTitle("");
+        setAssignedTo("");
     }
     
 
@@ -164,20 +167,19 @@ const TaskModal = ({show, setShow, editingCard, setEditingCard, data}) =>{
                         <FormControl fullWidth>
                         <Box sx={boxStyle}>
                         <div className="task-assignment">
-                        <TextField value={editingCard ? data.tasks[editingCard].title : null} sx={textFieldStyle} id="standard-basic" label="Task" variant="standard" defaultValue="" onChange={(event) => setTitle(event.target.value)} InputLabelProps ={{sx: {
+                        <TextField value={title} sx={textFieldStyle} id="standard-basic" label="Task" variant="standard" defaultValue="" onChange={(event) => setTitle(event.target.value)} InputLabelProps ={{sx: {
                             color: "#2E6171", [`&.${inputLabelClasses.shrink}`]: {
                                 color: "#2E6171"
                             }
                         }}}/>
-                        <TextField value={editingCard ? data.tasks[editingCard].assigned_to : null} sx={textFieldStyle} id="standard-basic" label="Assign to" variant="standard" defaultValue="" onChange={(event) => setAssignedTo(event.target.value)} InputLabelProps ={{sx: {
+                        <TextField value={assignedTo} sx={textFieldStyle} id="standard-basic" label="Assign to" variant="standard" defaultValue="" onChange={(event) => setAssignedTo(event.target.value)} InputLabelProps ={{sx: {
                             color: "#2E6171", [`&.${inputLabelClasses.shrink}`]: {
                                 color: "#2E6171"
                             }
                         }}}/>
                         </div>
-                        {/* <TextField sx={textFieldStyle} id="standard-basic" label="Due Date" variant="standard" defaultValue="" onChange={(event) => setDue(event.target.value)}/> */}
                         <DatePicker onChange={(value) => {formatDate(value)}} value={date} />
-                        <Button size="small" sx={saveStyle} onClick={() => Push(due, title, assignedTo)}>Save</Button>
+                        <Button size="small" sx={saveStyle} onClick={() => Push(date, title, assignedTo)}>Save</Button>
                         </Box>
                         </FormControl>
                     </Modal>
