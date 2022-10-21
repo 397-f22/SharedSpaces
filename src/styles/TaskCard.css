@@ -28,7 +28,7 @@
     background-color: white;
 }
 .assign{
-    margin-left: 20%;
+    margin-left: 5%;
 }
 .label-container{
     display: flex;
@@ -82,4 +82,15 @@
 
 #editButton:hover {
     cursor: pointer;
+}
+@media (min-width: 740px) 
+{
+    .done1
+   {
+       font-size: 14px; 
+   }
+   .not-done1
+   {
+       font-size:14px;
+   }
 }

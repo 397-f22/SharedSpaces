@@ -63,14 +63,14 @@ const TaskCard = ({due, id, title, checked, assignedTo, show, setShow, setEditin
                     <div className="card-content-checkbox">
                         <div className='label-container'>
                             <input type="checkbox" id="checkbox" name="vehicle1" checked={checked} onChange={() => changeChecked()}></input>
-                            <label className="assign"><Typography sx={{ fontSize: 22, flexGrow: 1, fontFamily: 'Ubuntu' }} className={checked ? "done1" : "not-done1"} gutterBottom>
+                            <label className="assign"><Typography sx={{ fontSize: '4vw', flexGrow: 1, fontFamily: 'Ubuntu' }} className={checked ? "done1" : "not-done1"} gutterBottom>
                                     {assignedTo}
                                 </Typography></label>
                         </div>
                         <ThemeProvider theme={headerTheme}>
                             <div className='task-wrapper'>
                                 <div className='titleEdit'>
-                                <Typography variant="h5" sx = {{flexGrow: 1, fontFamily: 'Ubuntu'}} component="div" className={checked ? "done1" : "not-done1"}>
+                                <Typography variant="h5" sx = {{fontSize: '5vw', flexGrow: 1, fontFamily: 'Ubuntu'}} component="div" className={checked ? "done1" : "not-done1"}>
                                     {title}
                                 </Typography>
                                 <EditIcon id="editButton" onClick={() => {setEditingCard(id); setShow(true)}} />
