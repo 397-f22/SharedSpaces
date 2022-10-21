@@ -23,6 +23,7 @@ import {user_list} from '../utilities/userList';
 
 
 import { setData,getUserInfo,useAuthState } from '../utilities/firebase';
+import { display } from '@mui/system';
 
 const style = {
 
@@ -37,21 +38,21 @@ const boxStyle = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: '50%',
-    height: 'auto',
+    width: '90vw',
+    height: '90vw',
     paddingTop: '3%',
     paddingBottom: '3%',
     bgcolor: 'background.paper',
     border: '2px solid #2E6171',
     boxShadow: 24,
-    display: "flex",
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    borderRadius: "25px"
+    borderRadius: "25px",
+    display: 'grid'
 };
   
-const textFieldStyle={width:"80%",color:"#556F7A",padding:"5%", fontFamily: 'Ubuntu'}
+const textFieldStyle={width:'auto',color:"#556F7A",padding:"5%", fontFamily: 'Ubuntu'}
 const saveStyle = {color:"white", backgroundColor: "orchid", fontFamily: 'Ubuntu',
 '&:hover': {
     color: 'white',
@@ -60,7 +61,8 @@ const saveStyle = {color:"white", backgroundColor: "orchid", fontFamily: 'Ubuntu
   '&:active': {
     color: 'white',
     backgroundColor: '#D4AFCD',
-  }}
+  },
+    width:'auto'}
 const TaskModal = ({show, setShow, editingCard, setEditingCard, data}) =>{
     useEffect(() => {
         console.log(editingCard);
@@ -199,7 +201,10 @@ const TaskModal = ({show, setShow, editingCard, setEditingCard, data}) =>{
                                 </Select>
                             </div>
                         </div>
-                        <DatePicker onChange={(value) => {formatDate(value)}} value={date} />
+                        <label className="icon">
+                            <DatePicker onChange={(value) => {formatDate(value)}} value={date} />
+                        </label>
+                        
                         <Button size="small" sx={saveStyle} onClick={() => Push(date, title, assignedTo)}>Save</Button>
                         </Box>
                         </FormControl>

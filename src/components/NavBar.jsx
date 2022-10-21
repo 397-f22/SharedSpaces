@@ -20,7 +20,9 @@ const style = {color:"#2E6171", backgroundColor: "whitesmoke", fontFamily: 'Ubun
   '&:active': {
     color: 'white',
     backgroundColor: '#556F7A',
-  }}
+  },
+  fontSize: '3vw'
+}
 
 
 const SignInButton = () => (
@@ -45,7 +47,7 @@ const NavBar = () => {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static" sx={{ backgroundColor: "#2E6171" }}>
           <Toolbar>
-            <Typography variant="h6" component="div" color="white" sx={{ flexGrow: 1, paddingLeft: 15, fontSize: 30, fontFamily: 'Ubuntu'}}>
+            <Typography variant="h6" component="div" color="white" sx={{ flexGrow: 1, fontSize: 30, fontFamily: 'Ubuntu'}}>
               SharedSpaces
             </Typography>
             <AuthButton />
