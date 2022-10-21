@@ -70,7 +70,7 @@ const TaskCard = ({due, id, title, checked, assignedTo, show, setShow, setEditin
                         <ThemeProvider theme={headerTheme}>
                             <div className='task-wrapper'>
                                 <div className='titleEdit'>
-                                <Typography variant="h5" sx = {{fontSize: '6vw', flexGrow: 1, fontFamily: 'Ubuntu'}} component="div" className={checked ? "done1" : "not-done1"}>
+                                <Typography variant="h5" sx = {{fontSize: '5vw', flexGrow: 1, fontFamily: 'Ubuntu'}} component="div" className={checked ? "done1" : "not-done1"}>
                                     {title}
                                 </Typography>
                                 <EditIcon id="editButton" onClick={() => {setEditingCard(id); setShow(true)}} />
